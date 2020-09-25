@@ -58,7 +58,7 @@ public class Terning {
      * Simulerer et pseudo-tilfældigt terningekast.
      * @return værdi af terningen efter kast, som en integer.
      */
-    public int roll() {
+    public int kast() {
         værdi = (int) (Math.random()) * antalSider + 1;
         return værdi;
     }
