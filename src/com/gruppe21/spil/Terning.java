@@ -9,35 +9,40 @@ package com.gruppe21.spil;
  * @author Troels Christoffersen
  * @author https://github.com/tobiasmaneschijn/21_del1
  */
-public class Die {
+public class Terning {
     /**
      * En terning har kun 6 sider.
      */
-    private final int MAX_VALUE = 6;
+    private int antalSider;
 
     /**
      * Den aktuelle værdi af terningen.
      */
-    private int faceValue;
+    private int værdi;
 
-    public Die(){
-        faceValue = 1;
+    public Terning(){
+        værdi = -1;
+        antalSider = 6;
+    }
+    public Terning(int antalSider){
+        værdi = -1;
+        this.antalSider = antalSider;
     }
 
     /**
      * Sætter terningens værdi til den givne integer.
-     * @param faceValue Værdien som terningen skal sættes til
+     * @param værdi Værdien som terningen skal sættes til
      */
-    public void setFaceValue(int faceValue) {
-        this.faceValue = faceValue;
+    public void setVærdi(int værdi) {
+        this.værdi = værdi;
     }
 
     /**
      * Få terningens værdi.
      * @return  Terningens værdi
      */
-    public int getFaceValue() {
-        return faceValue;
+    public int getVærdi() {
+        return værdi;
     }
 
     /**
@@ -46,15 +51,15 @@ public class Die {
      */
     @Override
     public String toString() {
-        return Integer.toString(faceValue);
+        return Integer.toString(værdi);
     }
 
     /**
      * Simulerer et pseudo-tilfældigt terningekast.
      * @return værdi af terningen efter kast, som en integer.
      */
-    public int roll(){
-        faceValue = (int)(Math.random()) * MAX_VALUE + 1;
-        return faceValue;
+    public int roll() {
+        værdi = (int) (Math.random()) * antalSider + 1;
+        return værdi;
     }
 }
