@@ -59,7 +59,7 @@ public class Terning {
      * @return værdi af terningen efter kast, som en integer.
      */
     public int kast() {
-        værdi = (int) (Math.random()* ( antalSider - 1) + 1);
+        værdi = (int) (Math.random() * antalSider + 1);
         return værdi;
     }
 }
