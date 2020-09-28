@@ -70,4 +70,5 @@ public class Terning {
         værdi = (int) (Math.random() * antalSider + 1);
         return værdi;
     }
+
 }
