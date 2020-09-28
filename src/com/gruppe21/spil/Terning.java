@@ -11,7 +11,7 @@ package com.gruppe21.spil;
  */
 public class Terning {
     /**
-     * En terning har kun 6 sider.
+     * En terning har mindst 2 sider.
      */
     private int antalSider;
 
@@ -26,7 +26,7 @@ public class Terning {
     }
     public Terning(int antalSider){
         værdi = -1;
-        this.antalSider = antalSider;
+        this.antalSider = Math.max(2,antalSider);
     }
 
     /**
