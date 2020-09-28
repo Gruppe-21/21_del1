@@ -30,6 +30,14 @@ public class Terning {
     }
 
     /**
+     * Få antallet af terningens sider.
+     * @return  Terningens antal sider
+     */
+    public int getAntalSider(){
+        return antalSider;
+    }
+
+    /**
      * Sætter terningens værdi til den givne integer.
      * @param værdi Værdien som terningen skal sættes til
      */
