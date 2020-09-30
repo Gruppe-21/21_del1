@@ -8,10 +8,12 @@ public class Spil {
     private final Terning[] terninger;
     private final String[] spillerNavne = {"", ""};
     private final int[] point = {0, 0};
+    java.util.Scanner scanner;
 
     public Spil(){
         antalTerninger = 2;
         terninger = new Terning[] {new Terning(6), new Terning(6)};
+        setSpillerNavne(scanner = new Scanner(System.in), spillerNavne);
     }
     /*
     public Spil(int[] antalSider){
@@ -20,28 +22,12 @@ public class Spil {
         for (int i = 0; i < antalTerninger; i++) {
             terninger[i] = new Terning(antalSider[i]);
         }
+        setSpillerNavne(scanner = new Scanner(System.in), spillerNavne);
     }
     */
 
     // Kald dette for at starte spillet.
     public void Play() {
-        java.util.Scanner scanner = new Scanner(System.in);
-        while(true) {
-            try {
-                System.out.println("Indtast spiller 1's navn:");
-                spillerNavne[0] = scanner.nextLine().strip();
-                while (true) {
-                    System.out.println("Indtast spiller 2's navn:");
-                    spillerNavne[1] = scanner.nextLine().strip();
-                    if (!spillerNavne[1].equals(spillerNavne[0])) break;
-                    System.out.println("Spiller 1 og spiller 2 kan ikke have samme navn");
-                }
-                break;
-            } catch (Exception e) {
-                System.out.println("Der skete en fejl. Prøv igen");
-            }
-        }
-
         int spiller = 0;
         boolean toSekserer = false;
         while(true){
@@ -78,4 +64,24 @@ public class Spil {
         System.out.println(spillerNavne[spiller] + " har vundet");
         scanner.close();
     }
+
+    private void setSpillerNavne(Scanner scanner, String[] spillerNavne){
+        while(true) {
+            try {
+                System.out.println("Indtast spiller 1's navn:");
+                spillerNavne[0] = scanner.nextLine().strip();
+                while (true) {
+                    System.out.println("Indtast spiller 2's navn:");
+                    spillerNavne[1] = scanner.nextLine().strip();
+                    if (!spillerNavne[1].equals(spillerNavne[0])) break;
+                    System.out.println("Spiller 1 og spiller 2 kan ikke have samme navn");
+                }
+                break;
+            } catch (Exception e) {
+                System.out.println("Der skete en fejl. Prøv igen");
+            }
+            return;
+        }
+    }
+
 }
