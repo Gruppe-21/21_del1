@@ -9,6 +9,7 @@ package com.gruppe21.spil;
  * @author Troels Christoffersen
  * @author https://github.com/tobiasmaneschijn/21_del1
  */
+
 public class Terning {
     /**
      * En terning har mindst 2 sider.
