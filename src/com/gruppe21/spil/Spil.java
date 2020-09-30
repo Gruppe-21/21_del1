@@ -9,7 +9,6 @@ public class Spil {
     private final java.util.Scanner scanner;
     private final Spiller[] spillere;
     private int spiller = 0;
-    private boolean hasWon;
 
     public Spil(){
         scanner = new Scanner(System.in);
@@ -48,11 +47,12 @@ public class Spil {
         while(!KørRunde(terninger[0].kast(), terninger[1].kast(),false)){
 
         }
+        System.out.println(spillere[spiller].getNavn() + " har vundet");
         scanner.close();
     }
 
     public boolean KørRunde(int terningkast1, int terningkast2, boolean isTest) {
-        boolean hasWon = false;
+        boolean harVundet = false;
         if(!isTest){
             System.out.println("Tryk enter for at kaste dine terninger\n" + spillere[spiller].getNavn() +
                     (spillere[spiller].isNavnSlutterMedS() ? "'" : "'s")
@@ -69,16 +69,16 @@ public class Spil {
 
         if (terninger[0].getVærdi() == terninger[1].getVærdi()) {
             if (spillere[spiller].getPoint() >= 40) {
-                hasWon = true;
+                harVundet = true;
             } else {
                 spillere[spiller].addPoint(sum);
                 if (terninger[0].getVærdi() == 6) {
                     if (spillere[spiller].isToSekserer()) {
-                        hasWon = true;
+                        harVundet = true;
                     } else spillere[spiller].setToSekserer(true);
 
                 }
-                if (!hasWon) {
+                if (!harVundet) {
                     if (terninger[0].getVærdi() == 1) {
                         spillere[spiller].setPoint(0);
                     }
@@ -90,11 +90,7 @@ public class Spil {
             spillere[spiller].setToSekserer(false);
             spiller = (spiller == 0 ? 1 : 0);
         }
-        if(hasWon)
-            System.out.println(spillere[spiller].getNavn() + " har vundet");
-
-
-        return hasWon;
+        return harVundet;
     }
 
     private void setSpillere(){
