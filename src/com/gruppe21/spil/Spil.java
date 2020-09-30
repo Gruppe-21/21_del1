@@ -8,7 +8,7 @@ public class Spil {
     private final Terning[] terninger;
     private final String[] spillerNavne = {"", ""};
     private final int[] point = {0, 0};
-    java.util.Scanner scanner;
+    private final java.util.Scanner scanner;
 
     public Spil(){
         antalTerninger = 2;
