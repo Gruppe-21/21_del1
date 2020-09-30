@@ -8,6 +8,13 @@ public class Test {
     private static int iterationer = 1000000 ;
 
     public static void main(String[] args) {
+
+        TestEnsTerninger();
+
+
+    }
+
+    public static void TestEnsTerninger() {
         Terning terning1 = new Terning();
         Terning terning2 = new Terning();
 
@@ -31,7 +38,5 @@ public class Test {
             output += "\n";
         }
         System.out.println(output);
-
-
     }
 }
