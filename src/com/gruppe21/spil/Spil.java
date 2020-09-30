@@ -8,7 +8,7 @@ public class Spil {
     private final Terning[] terninger;
     private final java.util.Scanner scanner;
     private final Spiller[] spillere;
-    int spiller = 0;
+    private int spiller = 0;
     private boolean hasWon;
 
     public Spil(){
