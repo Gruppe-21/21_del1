@@ -1,12 +1,14 @@
 package com.gruppe21.spil;
 
 public class Spiller {
-    private String navn;
+    private String navn = "";
     private int point = 0;
     private boolean toSekserer = false;
 
     public Spiller(String navn){
         this.navn = navn;
+    }
+    public Spiller(){
     }
 
 
