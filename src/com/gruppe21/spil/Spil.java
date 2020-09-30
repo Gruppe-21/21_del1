@@ -44,7 +44,7 @@ public class Spil {
             System.out.println( "Tryk enter for at kaste dine terninger\n" + spillerNavne[spiller] +
                     (spillerNavne[spiller].toLowerCase().charAt(spillerNavne[spiller].length() - 1) == 's' ? "'" : "'s")
                     + " tur, " + point[spiller] + " point");
-            //scanner.nextLine();
+            scanner.nextLine();
             terninger[0].kast();
             terninger[1].kast();
             int sum;
