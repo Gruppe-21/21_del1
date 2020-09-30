@@ -4,10 +4,10 @@ import java.util.Scanner;
 
 public class Spil {
 
-    private int antalTerninger;
-    private Terning[] terninger;
-    private String[] spillerNavne = {"", ""};
-    private int[] point = {0, 0};
+    private final int antalTerninger;
+    private final Terning[] terninger;
+    private final String[] spillerNavne = {"", ""};
+    private final int[] point = {0, 0};
 
     public Spil(){
         antalTerninger = 2;
