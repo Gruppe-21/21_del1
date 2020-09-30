@@ -74,6 +74,13 @@ public class Spil {
         scanner.close();
     }
 
+    /**
+     *
+     * @param terningkast1
+     * @param terningkast2
+     * @param isTest
+     * @return true hvis den nuværende spiller har vundet, ellers false
+     */
     public boolean KørRunde(int terningkast1, int terningkast2, boolean isTest) {
         boolean harVundet = false;
         if(!isTest){
@@ -91,21 +98,17 @@ public class Spil {
                 + " point\n\n\n");
 
         if (terninger[0].getVærdi() == terninger[1].getVærdi()) {
-            if (spillere[aktuelSpillerNummer].getPoint() >= 40) {
-                harVundet = true;
-            } else {
+            if (spillere[aktuelSpillerNummer].getPoint() >= 40) harVundet = true;
+            else {
                 spillere[aktuelSpillerNummer].addPoint(sum);
                 if (terninger[0].getVærdi() == 6) {
-                    if (spillere[aktuelSpillerNummer].isToSekserer()) {
-                        harVundet = true;
-                    } else spillere[aktuelSpillerNummer].setToSekserer(true);
+                    if (spillere[aktuelSpillerNummer].isToSekserer()) harVundet = true;
+                    else spillere[aktuelSpillerNummer].setToSekserer(true);
 
                 }
                 if (!harVundet) {
-                    if (terninger[0].getVærdi() == 1) {
-                        spillere[aktuelSpillerNummer].setPoint(0);
-                    }
-                    spillere[aktuelSpillerNummer].setToSekserer(false);
+                    if (terninger[0].getVærdi() == 1) spillere[aktuelSpillerNummer].setPoint(0);
+                    if(terninger[0].getVærdi() != 6) spillere[aktuelSpillerNummer].setToSekserer(false);
                 }
             }
         } else {
