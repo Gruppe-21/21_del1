@@ -6,14 +6,15 @@ public class Spil {
 
     private final int antalTerninger;
     private final Terning[] terninger;
-    private final String[] spillerNavne = {"", ""};
-    private final int[] point = {0, 0};
     private final java.util.Scanner scanner;
+    private final Spiller[] spillere;
 
     public Spil(){
+        scanner = new Scanner(System.in);
         antalTerninger = 2;
         terninger = new Terning[] {new Terning(6), new Terning(6)};
-        setSpillerNavne(scanner = new Scanner(System.in), spillerNavne);
+        spillere = new Spiller[2];
+        setSpillere();
     }
     /*
     public Spil(int[] antalSider){
@@ -29,58 +30,58 @@ public class Spil {
     // Kald dette for at starte spillet.
     public void Play() {
         int spiller = 0;
-        boolean toSekserer = false;
         while(true){
-            System.out.println( "Tryk enter for at kaste dine terninger\n" + spillerNavne[spiller] +
-                    (spillerNavne[spiller].toLowerCase().endsWith("s") ? "'" : "'s")
-                    + " tur, " + point[spiller] + " point");
+            System.out.println( "Tryk enter for at kaste dine terninger\n" + spillere[spiller].getNavn() +
+                    (spillere[spiller].isNavnSlutterMedS() ? "'" : "'s")
+                    + " tur, " + spillere[spiller].getPoint() + " point");
             scanner.nextLine();
             terninger[0].kast();
             terninger[1].kast();
             int sum;
             System.out.println("Du har slået " + terninger[0].getVærdi() + " og " + terninger[1].getVærdi()  +
                     ", og har derfor " +
-                    ( (sum = terninger[0].getVærdi() + terninger[1].getVærdi()) == 2 ? 0 : sum + point[spiller])
+                    ( (sum = terninger[0].getVærdi() + terninger[1].getVærdi()) == 2 ? 0 : sum + spillere[spiller].getPoint())
                     + " point\n\n\n");
 
             if (terninger[0].getVærdi() == terninger[1].getVærdi()){
-                if (point[spiller] >= 40) break;
-                point[spiller] += sum;
+                if (spillere[spiller].getPoint() >= 40) break;
+                spillere[spiller].addPoint(sum);
                 if (terninger[0].getVærdi() == 6){
-                    if (toSekserer) break;
-                    else toSekserer = true;
+                    if (spillere[spiller].isToSekserer()) break;
+                    else spillere[spiller].setToSekserer(true);
                     continue;
                 }
                 if (terninger[0].getVærdi() == 1) {
-                    point[spiller] = 0;
+                    spillere[spiller].setPoint(0);
                 }
+                spillere[spiller].setToSekserer(false);
             }
             else {
-                point[spiller] += sum;
+                spillere[spiller].addPoint(sum);
+                spillere[spiller].setToSekserer(false);
                 spiller = (spiller == 0 ? 1 : 0);
             }
-            toSekserer = false;
         }
-        System.out.println(spillerNavne[spiller] + " har vundet");
+        System.out.println(spillere[spiller].getNavn() + " har vundet");
         scanner.close();
     }
 
-    private void setSpillerNavne(Scanner scanner, String[] spillerNavne){
+    private void setSpillere(){
         while(true) {
             try {
                 System.out.println("Indtast spiller 1's navn:");
-                spillerNavne[0] = scanner.nextLine().strip();
+                spillere[0] = new Spiller(scanner.nextLine().strip());
+                spillere[1] = new Spiller();
                 while (true) {
                     System.out.println("Indtast spiller 2's navn:");
-                    spillerNavne[1] = scanner.nextLine().strip();
-                    if (!spillerNavne[1].equals(spillerNavne[0])) break;
+                    spillere[1].setNavn(scanner.nextLine().strip());
+                    if (!spillere[1].getNavn().equals(spillere[0].getNavn())) break;
                     System.out.println("Spiller 1 og spiller 2 kan ikke have samme navn");
                 }
                 break;
             } catch (Exception e) {
                 System.out.println("Der skete en fejl. Prøv igen");
             }
-            return;
         }
     }
 
