@@ -4,9 +4,10 @@ public class Spiller {
     private String navn = "";
     private int point = 0;
     private boolean toSekserer = false;
+    private boolean navnSlutterMedS;
 
     public Spiller(String navn){
-        this.navn = navn;
+        setNavn(navn);
     }
     public Spiller(){
     }
@@ -34,5 +35,10 @@ public class Spiller {
 
     public void setNavn(String navn) {
         this.navn = navn;
+        navnSlutterMedS = getNavn().toLowerCase().endsWith("s");
+    }
+
+    public boolean isNavnSlutterMedS() {
+        return navnSlutterMedS;
     }
 }
