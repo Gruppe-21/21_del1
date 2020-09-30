@@ -29,9 +29,13 @@ public class Spil {
         while(true) {
             try {
                 System.out.println("Indtast spiller 1's navn:");
-                spillerNavne[0] = scanner.nextLine();
-                System.out.println("Indtast spiller 2's navn:");
-                spillerNavne[1] = scanner.nextLine();
+                spillerNavne[0] = scanner.nextLine().strip();
+                while (true) {
+                    System.out.println("Indtast spiller 2's navn:");
+                    spillerNavne[1] = scanner.nextLine().strip();
+                    if (!spillerNavne[1].equals(spillerNavne[0])) break;
+                    System.out.println("Spiller 1 og spiller 2 kan ikke have samme navn");
+                }
                 break;
             } catch (Exception e) {
                 System.out.println("Der skete en fejl. Prøv igen");
