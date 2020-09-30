@@ -29,9 +29,13 @@ public class Spil {
         while(true) {
             try {
                 System.out.println("Indtast spiller 1's navn:");
-                spillerNavne[0] = scanner.nextLine();
-                System.out.println("Indtast spiller 2's navn:");
-                spillerNavne[1] = scanner.nextLine();
+                spillerNavne[0] = scanner.nextLine().strip();
+                while (true) {
+                    System.out.println("Indtast spiller 2's navn:");
+                    spillerNavne[1] = scanner.nextLine().strip();
+                    if (!spillerNavne[1].equals(spillerNavne[0])) break;
+                    System.out.println("Spiller 1 og spiller 2 kan ikke have samme navn");
+                }
                 break;
             } catch (Exception e) {
                 System.out.println("Der skete en fejl. Prøv igen");
@@ -42,7 +46,7 @@ public class Spil {
         boolean toSekserer = false;
         while(true){
             System.out.println( "Tryk enter for at kaste dine terninger\n" + spillerNavne[spiller] +
-                    (spillerNavne[spiller].toLowerCase().charAt(spillerNavne[spiller].length() - 1) == 's' ? "'" : "'s")
+                    (spillerNavne[spiller].toLowerCase().endsWith("s") ? "'" : "'s")
                     + " tur, " + point[spiller] + " point");
             scanner.nextLine();
             terninger[0].kast();
@@ -54,22 +58,22 @@ public class Spil {
                     + " point\n\n\n");
 
             if (terninger[0].getVærdi() == terninger[1].getVærdi()){
-                if (point[spiller] >= 40 && terninger[0].getVærdi() != 1) break;
-                else if (terninger[0].getVærdi() == 6){
+                if (point[spiller] >= 40) break;
+                point[spiller] += sum;
+                if (terninger[0].getVærdi() == 6){
                     if (toSekserer) break;
                     else toSekserer = true;
+                    continue;
                 }
-                point[spiller] += sum;
                 if (terninger[0].getVærdi() == 1) {
                     point[spiller] = 0;
-                    toSekserer = false;
                 }
             }
             else {
                 point[spiller] += sum;
-                spiller = spiller == 0 ? 1 : 0;
-                toSekserer = false;
+                spiller = (spiller == 0 ? 1 : 0);
             }
+            toSekserer = false;
         }
         System.out.println(spillerNavne[spiller] + " har vundet");
         scanner.close();
