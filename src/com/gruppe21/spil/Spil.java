@@ -34,7 +34,6 @@ public class Spil {
                 spillerNavne[1] = scanner.nextLine();
                 break;
             } catch (Exception e) {
-                System.out.flush();
                 System.out.println("Der skete en fejl. Prøv igen");
             }
         }
@@ -63,7 +62,6 @@ public class Spil {
                 point[spiller] += sum;
                 if (terninger[0].getVærdi() == 1) {
                     point[spiller] = 0;
-                    spiller = spiller == 0 ? 1 : 0;
                     toSekserer = false;
                 }
             }
