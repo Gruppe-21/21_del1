@@ -5,7 +5,7 @@ import com.gruppe21.spil.Terning;
 
 // Brug denne klasse til at køre tests
 public class Test {
-    private static int iterationer = 1000000000 ;
+    private static int iterationer = 1000000 ;
 
     public static void main(String[] args) {
         Terning terning1 = new Terning();
@@ -26,7 +26,7 @@ public class Test {
         for (int i = 0; i < resultat.length; i++) {
             output += (i+ 1);
             for (int j = 0; j < resultat[i].length; j++) {
-                output += " " + resultat[i][j];
+                output += " " + 36 * ((float)resultat[i][j]/iterationer);
             }
             output += "\n";
         }
