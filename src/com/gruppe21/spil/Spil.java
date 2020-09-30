@@ -28,9 +28,11 @@ public class Spil {
         antalTerninger = 2;
         terninger = new Terning[] {new Terning(6), new Terning(6)};
         spillere = new Spiller[2];
-        spillere[0].setNavn(spiller1);
-        spillere[1].setNavn(spiller2);
+        spillere[0] = new Spiller(spiller1);
+        spillere[1] = new Spiller(spiller2);
     }
+
+
     /*
     public Spil(int[] antalSider){
         this.antalTerninger = antalSider.length;
