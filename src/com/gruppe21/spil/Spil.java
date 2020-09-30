@@ -76,5 +76,6 @@ public class Spil {
         System.out.println(spillerNavne[spiller] +
                 (spillerNavne[spiller].toLowerCase().charAt(spillerNavne[spiller].length() - 1) == 's' ? "'" : "'s")
                 + " har vundet");
+        scanner.close();
     }
 }
