@@ -41,4 +41,8 @@ public class Spiller {
     public boolean isNavnSlutterMedS() {
         return navnSlutterMedS;
     }
+
+    public void addPoint(int i){
+        setPoint(getPoint() + i);
+    }
 }
