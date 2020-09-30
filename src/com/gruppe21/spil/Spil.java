@@ -8,6 +8,7 @@ public class Spil {
     private final Terning[] terninger;
     private final java.util.Scanner scanner;
     private final Spiller[] spillere;
+    private int spiller = 0;
 
     public Spil(){
         scanner = new Scanner(System.in);
@@ -15,6 +16,20 @@ public class Spil {
         terninger = new Terning[] {new Terning(6), new Terning(6)};
         spillere = new Spiller[2];
         setSpillere();
+    }
+
+    /**
+     * Til testing uden konsolinput
+     * @param spiller1 spillernavn
+     * @param spiller2 spillernavn
+     */
+    public Spil(String spiller1, String spiller2 ){
+        scanner = new Scanner(System.in);
+        antalTerninger = 2;
+        terninger = new Terning[] {new Terning(6), new Terning(6)};
+        spillere = new Spiller[2];
+        spillere[0].setNavn(spiller1);
+        spillere[1].setNavn(spiller2);
     }
     /*
     public Spil(int[] antalSider){
@@ -29,41 +44,53 @@ public class Spil {
 
     // Kald dette for at starte spillet.
     public void Play() {
-        int spiller = 0;
-        while(true){
-            System.out.println( "Tryk enter for at kaste dine terninger\n" + spillere[spiller].getNavn() +
-                    (spillere[spiller].isNavnSlutterMedS() ? "'" : "'s")
-                    + " tur, " + spillere[spiller].getPoint() + " point");
-            scanner.nextLine();
-            terninger[0].kast();
-            terninger[1].kast();
-            int sum;
-            System.out.println("Du har slået " + terninger[0].getVærdi() + " og " + terninger[1].getVærdi()  +
-                    ", og har derfor " +
-                    ( (sum = terninger[0].getVærdi() + terninger[1].getVærdi()) == 2 ? 0 : sum + spillere[spiller].getPoint())
-                    + " point\n\n\n");
+        while(!KørRunde(terninger[0].kast(), terninger[1].kast(),false)){
 
-            if (terninger[0].getVærdi() == terninger[1].getVærdi()){
-                if (spillere[spiller].getPoint() >= 40) break;
-                spillere[spiller].addPoint(sum);
-                if (terninger[0].getVærdi() == 6){
-                    if (spillere[spiller].isToSekserer()) break;
-                    else spillere[spiller].setToSekserer(true);
-                    continue;
-                }
-                if (terninger[0].getVærdi() == 1) {
-                    spillere[spiller].setPoint(0);
-                }
-                spillere[spiller].setToSekserer(false);
-            }
-            else {
-                spillere[spiller].addPoint(sum);
-                spillere[spiller].setToSekserer(false);
-                spiller = (spiller == 0 ? 1 : 0);
-            }
         }
         System.out.println(spillere[spiller].getNavn() + " har vundet");
         scanner.close();
+    }
+
+    public boolean KørRunde(int terningkast1, int terningkast2, boolean isTest) {
+        boolean harVundet = false;
+        if(!isTest){
+            System.out.println("Tryk enter for at kaste dine terninger\n" + spillere[spiller].getNavn() +
+                    (spillere[spiller].isNavnSlutterMedS() ? "'" : "'s")
+                    + " tur, " + spillere[spiller].getPoint() + " point");
+            scanner.nextLine();
+        }
+        terninger[0].setVærdi(terningkast1);
+        terninger[1].setVærdi(terningkast2);
+        int sum;
+        System.out.println("Du har slået " + terninger[0].getVærdi() + " og " + terninger[1].getVærdi() +
+                ", og har derfor " +
+                ((sum = terninger[0].getVærdi() + terninger[1].getVærdi()) == 2 ? 0 : sum + spillere[spiller].getPoint())
+                + " point\n\n\n");
+
+        if (terninger[0].getVærdi() == terninger[1].getVærdi()) {
+            if (spillere[spiller].getPoint() >= 40) {
+                harVundet = true;
+            } else {
+                spillere[spiller].addPoint(sum);
+                if (terninger[0].getVærdi() == 6) {
+                    if (spillere[spiller].isToSekserer()) {
+                        harVundet = true;
+                    } else spillere[spiller].setToSekserer(true);
+
+                }
+                if (!harVundet) {
+                    if (terninger[0].getVærdi() == 1) {
+                        spillere[spiller].setPoint(0);
+                    }
+                    spillere[spiller].setToSekserer(false);
+                }
+            }
+        } else {
+            spillere[spiller].addPoint(sum);
+            spillere[spiller].setToSekserer(false);
+            spiller = (spiller == 0 ? 1 : 0);
+        }
+        return harVundet;
     }
 
     private void setSpillere(){
