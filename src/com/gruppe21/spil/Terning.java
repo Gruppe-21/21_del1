@@ -3,7 +3,7 @@ package com.gruppe21.spil;
 /** Repræsenterer en virtuel terning
  * @author Hildibjørg Didriksen,
  * @author Marcus Rappenborg Kjærsgaard
- * @author Frederik Meyer Lehmann Lundsbjerg
+ * @author Frederik Lundsbjerg
  * @author Tobias Nyholm Maneschijn
  * @author Rasmus Nylander
  * @author Troels Christoffersen
