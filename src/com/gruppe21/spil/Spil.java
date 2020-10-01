@@ -72,7 +72,6 @@ public class Spil {
 
         }
         System.out.println(spillere[aktuelSpillerNummer].getNavn() + " har vundet");
-        scanner.close();
     }
 
     /**
