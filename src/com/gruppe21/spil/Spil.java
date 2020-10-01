@@ -121,7 +121,11 @@ public class Spil {
 
         if(harVundet){
             spillere[0].setPoint(0);
+            spillere[0].setToSekserer(false);
+
             spillere[1].setPoint(0);
+            spillere[0].setToSekserer(false);
+
         }
         return harVundet;
     }
