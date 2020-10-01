@@ -1,5 +1,7 @@
 package com.gruppe21.spil;
 
+import org.w3c.dom.ls.LSOutput;
+
 import java.util.Scanner;
 
 public class Spil {
@@ -29,7 +31,6 @@ public class Spil {
     public int getAktuelSpillerNummer() {
         return aktuelSpillerNummer;
     }
-
 
     public Spil(){
         scanner = new Scanner(System.in);
@@ -91,6 +92,7 @@ public class Spil {
         }
         terninger[0].setVærdi(terningkast1);
         terninger[1].setVærdi(terningkast2);
+
         int sum;
         System.out.println("Du har slået " + terninger[0].getVærdi() + " og " + terninger[1].getVærdi() +
                 ", og har derfor " +
@@ -98,7 +100,7 @@ public class Spil {
                 + " point\n\n\n");
 
         if (terninger[0].getVærdi() == terninger[1].getVærdi()) {
-            if (spillere[aktuelSpillerNummer].getPoint() >= 40) harVundet = true;
+            if (spillere[aktuelSpillerNummer].getPoint() >= 40 && terninger[0].getVærdi() != 1) harVundet = true;
             else {
                 spillere[aktuelSpillerNummer].addPoint(sum);
                 if (terninger[0].getVærdi() == 6) {
@@ -115,6 +117,15 @@ public class Spil {
             spillere[aktuelSpillerNummer].addPoint(sum);
             spillere[aktuelSpillerNummer].setToSekserer(false);
             aktuelSpillerNummer = (aktuelSpillerNummer == 0 ? 1 : 0);
+        }
+
+        if(harVundet){
+            spillere[0].setPoint(0);
+            spillere[0].setToSekserer(false);
+
+            spillere[1].setPoint(0);
+            spillere[0].setToSekserer(false);
+
         }
         return harVundet;
     }
